@@ -1,0 +1,101 @@
+.confirmation-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirmation-dialog {
+    background-color: #FFFFFF;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 4px;
+}
+
+.confirmation-dialog h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0 0 20px 0;
+    font-family: Arial, Roboto, sans-serif;
+}
+
+.confirmation-dialog p {
+    font-size: 16px;
+    color: #666666;
+    margin: 0 0 30px 0;
+    font-family: Arial, Roboto, sans-serif;
+}
+
+.dialog-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.dialog-btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, Roboto, sans-serif;
+    cursor: pointer;
+}
+
+.dialog-btn:focus {
+    outline: 2px solid #007BFF;
+}
+
+.cancel-btn {
+    background-color: #CCCCCC;
+    color: black;
+}
+
+.cancel-btn:hover {
+    background-color: #adadad;
+}
+
+.confirm-delete-btn {
+    background-color: #FF0000;
+    color: white;
+}
+
+.confirm-delete-btn:hover {
+    background-color: #d90000;
+}
+
+@media screen and (max-width: 768px) {
+    .confirmation-dialog {
+        width: 90%;
+    }
+
+    .confirmation-dialog h2 {
+        margin-bottom: 15px;
+    }
+
+    .confirmation-dialog p {
+        margin-bottom: 20px;
+    }
+
+    .dialog-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .dialog-btn {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .confirmation-dialog {
+        max-width: 400px;
+    }
+}

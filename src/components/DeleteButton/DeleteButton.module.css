@@ -1,0 +1,28 @@
+.deleteButton {
+    width: 100%;
+    background-color: #FF0000;
+    color: white;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Roboto, sans-serif;
+    border: none;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: #d90000;
+}
+
+.deleteButton:focus {
+    outline: 2px solid #007BFF          ;
+}
+
+@media screen and (max-width: 768px) {
+    .deleteButton {
+        width: 100%;
+        min-height: 44px;
+    }
+}
