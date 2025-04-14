@@ -20,4 +20,11 @@ h1 {
   margin-top: 50px;     /* optional spacing */
 }
 
+h2 {
+  text-align: center;   /* center alignment */
+  color: black;         /* text color */
+  font-size: 2rem;      /* slightly smaller than h1 */
+  margin-top: 30px;     /* optional spacing */
+}
+
 

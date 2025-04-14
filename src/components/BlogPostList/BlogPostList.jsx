@@ -22,9 +22,6 @@ const BlogPostList = ({ posts, navigate }) => {
           </div>
         ))}
       </div>
-      <div className={styles.buttonContainer}>
-        <button className={styles.createPostButton} onClick={() => navigate('/create')}>Post New</button>
-      </div>
     </div>
   );
 };

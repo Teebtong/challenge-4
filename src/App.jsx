@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
+import './styles/global.css';
+import Layout from './components/Layout/Layout';
 
 import BlogPostList from './components/BlogPostList/BlogPostList';
 import BlogPostDetail from './components/BlogPostDetail/BlogPostDetail';
@@ -115,14 +117,13 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Blog Posts</h1>
+    <Layout>
       <Routes>
         <Route path="/" element={<BlogPostList posts={posts} navigate={navigate} />} />
         <Route path="/posts/:id" element={<BlogPostDetail posts={posts} deletePost={deletePost} />} />
         <Route path="/create" element={<BlogPostForm onSubmit={handleSubmitPost} />} />
       </Routes>
-    </div>
+    </Layout>
   );
 };
 
