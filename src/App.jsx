@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import './App.css';
 import './styles/global.css';
 import Layout from './components/Layout/Layout';
@@ -91,7 +91,8 @@ const samplePosts = [
 ];
 
 const App = () => {
-  const [posts, setPosts] = useState(samplePosts);  
+  const [posts, setPosts] = useState(samplePosts);
+  const [comments, setComments] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmitPost = (postData) => {
@@ -114,13 +115,39 @@ const App = () => {
 
   const deletePost = (postId) => {
     setPosts(posts.filter(post => post.id !== postId));
+    // Also delete associated comments
+    setComments(comments.filter(comment => comment.postId !== postId));
+  };
+
+  const handleAddComment = (comment) => {
+    setComments([...comments, comment]);
+  };
+
+  const handleDeleteComment = (commentId) => {
+    setComments(comments.filter(comment => comment.id !== commentId));
+  };
+
+  // Create a wrapper component for BlogPostDetail to handle the comment filtering
+  const BlogPostDetailWrapper = () => {
+    const { id } = useParams();
+    const postComments = comments.filter(comment => comment.postId === id);
+    
+    return (
+      <BlogPostDetail 
+        posts={posts} 
+        deletePost={deletePost}
+        comments={postComments}
+        onAddComment={handleAddComment}
+        onDeleteComment={handleDeleteComment}
+      />
+    );
   };
 
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<BlogPostList posts={posts} navigate={navigate} />} />
-        <Route path="/posts/:id" element={<BlogPostDetail posts={posts} deletePost={deletePost} />} />
+        <Route path="/posts/:id" element={<BlogPostDetailWrapper />} />
         <Route path="/create" element={<BlogPostForm onSubmit={handleSubmitPost} />} />
       </Routes>
     </Layout>

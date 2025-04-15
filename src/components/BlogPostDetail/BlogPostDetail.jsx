@@ -2,8 +2,10 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './BlogPostDetail.module.css';
 import DeleteButton from '../DeleteButton/DeleteButton';
+import CommentForm from '../CommentForm/CommentForm';
+import CommentList from '../CommentList/CommentList';
 
-const BlogPostDetail = ({ posts, deletePost }) => {
+const BlogPostDetail = ({ posts, deletePost, comments, onAddComment, onDeleteComment }) => {
   const params = useParams();
   const navigate = useNavigate();
   const post = posts.find((post) => post.id === params.id);
@@ -21,6 +23,10 @@ const BlogPostDetail = ({ posts, deletePost }) => {
   const handleDelete = () => {
     deletePost(post.id);
     navigate('/');
+  };
+
+  const handleAddComment = (comment) => {
+    onAddComment({ ...comment, postId: post.id });
   };
 
   return (
@@ -41,6 +47,11 @@ const BlogPostDetail = ({ posts, deletePost }) => {
       </div>
       <div className={styles.deleteButtonContainer}>
         <DeleteButton onClick={handleDelete} />
+      </div>
+      
+      <div className={styles.commentsSection}>
+        <CommentList comments={comments} />
+        <CommentForm postId={post.id} onSubmit={handleAddComment} />
       </div>
     </div>
   );
